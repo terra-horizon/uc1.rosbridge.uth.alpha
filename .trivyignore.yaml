@@ -1,0 +1,19 @@
+# .trivyignore.yaml
+#misconfigurations:
+#  - id: DS-0002
+#    expired_at: 2026-12-31
+#    statement: >-
+#      Root user access is temporarily permitted. ROS Noetic/Foxy bridging 
+#      operations and shared custom workspace compilation frequently require 
+#      elevated privileges until user mapping is fully tested.
+
+#  - id: DS-0026
+#    statement: >-
+#      HEALTHCHECK is ignored because container health tracking is handled 
+#      externally by the deployment orchestrator or custom launch monitors.
+
+#  - id: DS-0029
+#    expired_at: 2026-08-15
+#    statement: >-
+#      Missing --no-install-recommends flag is temporarily tolerated to ensure 
+#      no critical sub-dependencies are dropped during massive ROS base installations.
