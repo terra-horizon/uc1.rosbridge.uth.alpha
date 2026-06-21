@@ -6,7 +6,7 @@ This deployment is Alpha v0.0.1 of the TERRA USV Module ROS Communication Bridge
 *   **USV Module ROS Communication Bridge:** Implemented in Alpha v0.0.1. Bridges different versions of the Robot Operating System (ROS) to ensure seamless data flow between legacy systems and modern frameworks.
 *   **Autonomous Navigation Workflow Integration:** Foundations only; full end-to-end autonomous navigation integration is planned for a future release.
 
-See [Component 2.13](https://terra-horizon.github.io/uc1.rosbridge.uth.alpha/) for the scope and status of this component.
+See [Component 2.XX](https://terra-horizon.github.io/uc1.rosbridge.uth.alpha/) for the scope and status of this component.
 
 ## Capabilities
 *   **ROS 1 to ROS 2 Dynamic Bridging:** Supports bi-directional, cross-version communication between ROS Noetic and ROS Foxy.
