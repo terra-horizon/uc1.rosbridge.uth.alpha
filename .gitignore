@@ -1,0 +1,43 @@
+.DS_Store
+.env
+.env.*
+
+# Python
+**pycache**/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
+
+# ROS workspace artifacts
+build/
+install/
+log/
+
+# Documentation build output
+docs/site/
+site/
+
+# Local scan reports
+local_scans/
+
+# Test outputs
+tests/results/
+
+# Runtime data
+cache/
+response/
+inference_results/
+
+# IDEs
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.swp
+
+# Docker
+*.tar
