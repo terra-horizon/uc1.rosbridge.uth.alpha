@@ -19,15 +19,24 @@ See [Component 2.XX](https://terra-horizon.github.io/uc1.rosbridge.uth.alpha/) f
 This alpha release is a containerized, CLI-driven ROS communication bridge verified during real-world Unmanned Surface Vehicle (USV) field trials at the **Sperchios River**. It does not yet feature automated dynamic custom message type reconfiguration or full integration into the core autonomous navigation loop.
 
 ## Main Entry Point
+
+### Build the multi-architecture image
+
 ```bash
-# Build the multi-architecture image
 docker build -t ros-bridge:amd64 .
+```
 
-# Spin up the bridge container with host network permissions
+### Spin up the bridge container with host network permissions
+
+```bash
 docker run -it --net=host --entrypoint /bin/bash ros-bridge:amd64
+```
 
-# Start the dynamic bridge layer
+### Start the dynamic bridge layer
+
+```bash
 source /ros1_bridge_ws/install/setup.bash
 export ROS_MASTER_URI=http://<ros1_master_IP>:11311
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ros2 run ros1_bridge dynamic_bridge
+```
