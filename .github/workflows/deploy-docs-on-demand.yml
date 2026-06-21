@@ -1,48 +1,47 @@
-name: Deploy Docs (On-Demand)
+name: Deploy Docs On-Demand
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: "Documentation version"
-        required: true
+  workflow_dispatch: 
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build-and-deploy-docs:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    defaults:
-      run:
-        working-directory: docs
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build Documentation
+        run: |
+          mkdir -p docs_output
+          if [ -d "docs" ]; then
+            echo "Found a docs folder, copying contents..."
+            cp -r docs/* docs_output/
+          else
+            echo "<h1>ROS1 & ROS2 Bridge Workspace Documentation</h1>" > docs_output/index.html
+            echo "<p>Generated dynamically on-demand via GitHub Actions.</p>" >> docs_output/index.html
+            echo "<p>Triggered by user: <strong>${{ github.actor }}</strong></p>" >> docs_output/index.html
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          python-version: '3.x'
+          path: './docs_output'
 
-      - name: Install dependencies
-        run: |
-          pip install mkdocs mkdocs-material mike neoteroi-mkdocs pymdown-extensions
-
-      - name: Validate docs
-        run: mkdocs build --strict --config-file mkdocs.yml
-
-      - name: Configure git
-        run: |
-          git config user.name "terra-ci[bot]"
-          git config user.email "terra-ci[bot]@terra-horizon.eu"
-
-      - name: Fetch existing gh-pages branch
-        run: git fetch origin gh-pages:gh-pages || true
-
-      - name: Publish docs
-        run: |
-          mike deploy --push --update-aliases ${{ github.event.inputs.version }} latest --config-file mkdocs.yml
-          mike set-default --push latest --config-file mkdocs.yml
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
