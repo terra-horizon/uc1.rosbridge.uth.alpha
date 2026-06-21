@@ -1,6 +1,6 @@
 # TERRA UC1 - Containerized ROS 1 to ROS 2 Bridge
 
-This deployment is Alpha v0.0.1 of the TERRA USV Module ROS Communication Bridge for Use Case 1: assessment of water contamination in coastal areas and in the water cycle. It is a cross-platform, containerized ROS1-to-ROS2 bridge engineered for robust robotic interoperability, ensuring seamless data flow between legacy systems and modern autonomous frameworks.
+This deployment is Alpha v1.0.0 of the TERRA USV Module ROS Communication Bridge for Use Case 1: assessment of water contamination in coastal areas and in the water cycle. It is a cross-platform, containerized ROS1-to-ROS2 bridge engineered for robust robotic interoperability, ensuring seamless data flow between legacy systems and modern autonomous frameworks.
 
 ## Product Chain Components
 *   **USV Module ROS Communication Bridge:** Implemented in Alpha v0.0.1. Bridges different versions of the Robot Operating System (ROS) to ensure seamless data flow between legacy systems and modern frameworks.
