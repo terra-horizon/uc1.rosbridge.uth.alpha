@@ -1,7 +1,7 @@
-name: Deploy Docs On-Demand
+name: Deploy Docs (No-MkDocs Native)
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy-docs:
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -25,22 +25,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Build Documentation
-        run: |
-          mkdir -p docs_output
-          if [ -d "docs" ]; then
-            echo "Found a docs folder, copying contents..."
-            cp -r docs/* docs_output/
-          else
-            echo "<h1>ROS1 & ROS2 Bridge Workspace Documentation</h1>" > docs_output/index.html
-            echo "<p>Generated dynamically on-demand via GitHub Actions.</p>" >> docs_output/index.html
-            echo "<p>Triggered by user: <strong>${{ github.actor }}</strong></p>" >> docs_output/index.html
-          fi
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './docs_output'
+          # Point this directly to your docs folder
+          path: './docs'
 
       - name: Deploy to GitHub Pages
         id: deployment
